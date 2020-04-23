@@ -1,1 +1,2 @@
 # youtubeSample
+- GooglePlatformDataのYoutubeDataApiを利用して、検索キーワードを入力してYoutubeのサムネイル情報を取得する様にしました
