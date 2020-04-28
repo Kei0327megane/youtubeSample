@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import _ from 'lodash';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'
+import axios from 'axios';
 
 export default class Header extends Component {
 
@@ -11,12 +12,20 @@ export default class Header extends Component {
 
     handleChangeInput(value){
         this.setState({keyword: value});
-        this._debounce(value)
+        this._debounce(value);
+        this.keywordLogInsert(value);
     }
 
     _debounce = _.debounce(value => {
         this.props.onSerchYoutube(value);
     },200);
+
+    keywordLogInsert(value){
+        axios.post('http://localhost:9094/log', {keyword: String(value)})
+        .catch(() => {
+            console.log('通信に失敗しました');
+        });
+    }
 
     render() {
         return (

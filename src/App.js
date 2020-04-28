@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import Body from './components/Body';
 
 const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
-export default class App extends React.Component {
+export default class App extends Component {
   state = {
     videos: [],
     items: []
@@ -19,12 +19,13 @@ export default class App extends React.Component {
       .then(response => {
           this.setState({
             videos: response.data.items,
-            items: this.state.items.concat(response.data.items)
+            items: this.state.items.concat(response.data.items),
+            keyword: {keyword}
           });
       })
       .catch(() => {
           console.log('通信に失敗しました');
-      });
+     });
   }
 
   render() {
